@@ -1,10 +1,4 @@
-//
-//  DetectOneBookViewController.swift
-//  Reread
-//
-//  Created by 近藤大翔 on 2018/06/27.
-//  Copyright © 2018年 近藤大翔. All rights reserved.
-//
+
 
 import UIKit
 
@@ -15,39 +9,13 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        scrollView.backgroundColor = UIColor.gray
         let main = UIScreen.main.bounds
-        // 表示窓のサイズと位置を設定
-        scrollView.frame.size = CGSize(width: main.width, height: main.height/2)
-        scrollView.center = self.view.center
-
-        // 中身の大きさを設定
-        scrollView.contentSize = CGSize(width: main.width * 3, height: (main.height)/2)
-
-        // スクロールバーの見た目と余白
-        scrollView.indicatorStyle = .white
-        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-
-        // Delegate を設定
-        scrollView.delegate = self
-
-        self.view.addSubview(scrollView)
-        
-        addScrollSubView(k: 1)
-        addScrollSubView(k: 2)
+        self.view.addSubview(addScrollView(main))
         scrollView.addSubview(addButton(main))
-//        scrollView.contentSize.width = main.width*2
-//        scrollView.delegate = self
-//        let rect2 = CGRect(x: main.width +  10, y: 20, width: main.width*2 - 20 , height: main.height/2 - 30 )
-//        let myView2 = UIView(frame: rect2)
-//        myView.backgroundColor = .white
-//        scrollView.addSubview(myView2)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func addView(_ main: CGRect) -> UIView{
@@ -56,13 +24,27 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         return myView
     }
     
-    @objc func addScrollSubView(k:Int){
+    func addScrollView(_ main: CGRect) -> UIScrollView {
+        scrollView.backgroundColor = UIColor.gray
+        scrollView.frame.size = CGSize(width: main.width, height: main.height/2)
+        scrollView.center = self.view.center
+        scrollView.contentSize = CGSize(width: main.width, height: (main.height)/2)
+        scrollView.indicatorStyle = .white
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        scrollView.delegate = self
+        return scrollView
+    }
+    
+    @objc func addScrollSubView(){
         let main = UIScreen.main.bounds
         let color = [UIColor.black,UIColor.black,UIColor.red,UIColor.green,UIColor.white]
-        let rect = CGRect(x: 10 + main.width * CGFloat(k-1), y: 20, width: main.width - 10 , height: main.height/2 - 100 )
+        scrollView.contentSize = CGSize(width: main.width * CGFloat(count), height: (main.height)/2)
+        let rect = CGRect(x: 10 + main.width * CGFloat(count-1), y: 100, width: main.width - 10 , height: main.height/2 - 100 )
         let myView = UIView(frame: rect)
-        myView.backgroundColor = color[k]
+        myView.backgroundColor = color[count]
         scrollView.addSubview(myView)
+        count += 1
+        print(count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,20 +54,17 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         self.title = message
     }
     
-    
-    
     func addButton(_ main: CGRect) -> UIButton {
+        let image3:UIImage = UIImage(named:"plus.png")!
         let button = UIButton()
-        button.frame = CGRect(x:main.width - 100, y: 50 ,
-                              width:100, height:100)
-        button.setTitle("Tap me!", for:UIControlState.normal)
+        button.frame = CGRect(x:main.width - 100, y: 40 ,width:50, height:50)
+        //button.setTitle("Tap me!", for:UIControlState.normal)
+        button.setImage(image3, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         button.titleLabel?.font =  UIFont.systemFont(ofSize: 36)
         button.backgroundColor = UIColor.init(
             red:0.9, green: 0.9, blue: 0.9, alpha: 1)
-        button.addTarget(self,
-                         action: #selector(DetectOneBookViewController.addScrollSubView(k:count)),
-                         for: .touchUpInside)
-        count = count + 1
+        button.addTarget(self,action: #selector(self.addScrollSubView),for: .touchUpInside)
         return button
     }
 
@@ -93,14 +72,5 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         self.dismiss(animated: true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
