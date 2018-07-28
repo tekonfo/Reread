@@ -12,7 +12,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         super.viewDidLoad()
         let main = UIScreen.main.bounds
         self.view.addSubview(addScrollView(main))
-        scrollView.addSubview(addButton(main))
+        self.view.addSubview(addButton(main))
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +32,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         scrollView.contentSize = CGSize(width: main.width, height: (main.height)/2)
         scrollView.indicatorStyle = .white
         scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        scrollView.isPagingEnabled = true
         scrollView.delegate = self
         return scrollView
     }
@@ -52,7 +53,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         label2.text = make_date(day: impres.date)
         let color = [UIColor.white,UIColor.green,UIColor.red,UIColor.green,UIColor.white]
         scrollView.contentSize = CGSize(width: main.width * CGFloat(count), height: (main.height)/2)
-        let rect = CGRect(x: 10 + main.width * CGFloat(count-1), y: 100, width: main.width - 10 , height: main.height/2 - 100 )
+        let rect = CGRect(x: 5 + main.width * CGFloat(count), y: 50, width: main.width - 10 , height: main.height/2 - 100 )
         let myView = UIView(frame: rect)
         if count < 4 {
             myView.backgroundColor = color[count]
@@ -86,15 +87,14 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     }
     
     func addButton(_ main: CGRect) -> UIButton {
-        let image3:UIImage = UIImage(named:"plus.png")!
+        let image3:UIImage = UIImage(named: "plus.png")!
         let button = UIButton()
-        button.frame = CGRect(x:main.width - 100, y: 40 ,width:50, height:50)
+        button.frame = CGRect(x:main.width / 2 - 50 , y: main.height - 150 ,width:100, height:100)
         //button.setTitle("Tap me!", for:UIControlState.normal)
         button.setImage(image3, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-        button.titleLabel?.font =  UIFont.systemFont(ofSize: 36)
-        button.backgroundColor = UIColor.init(
-            red:0.9, green: 0.9, blue: 0.9, alpha: 1)
+//        button.backgroundColor = UIColor.init(
+//            red:0.9, green: 0.9, blue: 0.9, alpha: 1)
         button.addTarget(self,action: #selector(self.addScrollSubView),for: .touchUpInside)
         return button
     }

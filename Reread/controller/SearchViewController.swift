@@ -2,41 +2,43 @@ import UIKit
 
 class SearchViewController: UIViewController , UISearchBarDelegate{
 private var mySearchBar: UISearchBar!
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.tapped(_:)))
+        self.view.addGestureRecognizer(tapGesture)
+        let navigationBarHeight:CGFloat = self.navigationController!.navigationBar.frame.size.height;
         mySearchBar = UISearchBar()
-        
         mySearchBar.delegate = self
-        
-        mySearchBar.frame = CGRect(x: 0,y: 0,width: 300,height: 150)
-        
-        mySearchBar.layer.position = CGPoint(x: self.view.bounds.width/2, y: 300)
-        
-        mySearchBar.layer.shadowOpacity = 0.5
-        
-        mySearchBar.layer.masksToBounds = false
-        
+        mySearchBar.frame = CGRect(x: 0,y: navigationBarHeight,width: self.view.bounds.width,height: 100)
         mySearchBar.showsBookmarkButton = false
-        
         mySearchBar.searchBarStyle = UISearchBarStyle.default
         mySearchBar.showsSearchResultsButton = true
-        
-        mySearchBar.prompt = "タイトル"
-        
-        mySearchBar.placeholder = "ここに入力してください"
-        
-        mySearchBar.tintColor = UIColor.red
-        
+        mySearchBar.placeholder = "名前、著者名"
         mySearchBar.showsSearchResultsButton = false
-        
         self.view.addSubview(mySearchBar)
-        // Do any additional setup after loading the view.
+    }
+    
+    @objc func tapped(_ sender: UITapGestureRecognizer){
+        if(mySearchBar.isFirstResponder){
+            mySearchBar.resignFirstResponder()
+        }
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool{
+        self.view.endEditing(true)
+        return true
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
-        print(searchBar.text!)
+        let session = URLSessionGetClient()
+        let query:String = session.add_query(query_data: searchBar.text!)
+        self.performSegue(withIdentifier: "ToSearchResult", sender: query)
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,14 +60,12 @@ private var mySearchBar: UISearchBar!
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ToSearchResult" {
+            let resultsearchtableViewController = segue.destination as!   ResultSearchTableViewController
+            resultsearchtableViewController.query = sender as! String
+        }
     }
-    */
 
 }

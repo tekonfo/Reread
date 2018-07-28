@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TopTableViewController: UITableViewController {
- 
+    let image1 = UIImage(named: "setting.jpeg")
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let settingImage = UIImage(named: "icon_000010_256.jpg")
         
-        let leftButton1 =  UIBarButtonItem(title: "検索", style: UIBarButtonItemStyle.plain, target: self, action:  #selector(TopTableViewController.newTodo))
-        let leftButton2 = UIBarButtonItem(title: "ranking", style: UIBarButtonItemStyle.plain, target: self, action:  #selector(TopTableViewController.newTodo))
+        //let settingImage = UIImage(named: "icon_000010_256.jpg")
+        let leftButton1 =  UIBarButtonItem( barButtonSystemItem: UIBarButtonSystemItem(rawValue: 12)!, target: self, action:  #selector(TopTableViewController.newTodo))
+        let leftButton2 = UIBarButtonItem(title: "ranking", style: UIBarButtonItemStyle.plain, target: self, action:  #selector(TopTableViewController.ranking))
+        
         
         self.navigationItem.rightBarButtonItems = [leftButton1,leftButton2]
         
@@ -42,19 +44,61 @@ class TopTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        let realm = try! Realm()
+        let arrays = realm.objects(Impressions.self)
+        
+        if(arrays.count == 0){
+            return 0
+        }else{
+            return arrays.count // "違う値だよ"
+        }
     }
 
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let alert: UIAlertController = UIAlertController(title: "アラート表示", message: "削除してもいいですか？", preferredStyle:  UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                let realm = try! Realm()
+                let arrays = realm.objects(Impressions.self)
+                let data = arrays[indexPath.row]
+                do {
+                    let realm = try Realm()
+                    try! realm.write {
+                        realm.delete(data)
+                    }
+                } catch {
+                }
+                //下のやつは、先にデータを削除してからでないとクラッシュする。なぜだろう。
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            })
+            let canselAction: UIAlertAction = UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                })
+            alert.addAction(canselAction)
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let realm = try! Realm()
+        let arrays = realm.objects(Impressions.self)
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        cell.textLabel?.text = "text"
-        cell.detailTextLabel?.text = "aaa"
+        cell.textLabel?.text = arrays[indexPath.row].title
+        cell.detailTextLabel?.text = arrays[indexPath.row].creator
         let beautifulImage = UIImage(named: "1p3i86c-kai.jpg")
         cell.imageView?.image = beautifulImage
-
         return cell
+    }
+    
+    @objc func ranking(){
+        let storyboard: UIStoryboard = self.storyboard!
+        let nextView = storyboard.instantiateViewController(withIdentifier: "ranking") as! UITabBarController
+        self.present(nextView, animated: true, completion: nil)
     }
     
     @objc func newTodo(){
@@ -71,69 +115,8 @@ class TopTableViewController: UITableViewController {
         //セルの選択解除
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at:indexPath)
-        
         appDelegate.message = cell?.textLabel!.text! as! String
-        
         //ここに遷移処理を書く
         self.performSegue(withIdentifier: "ToDetectViewController", sender: self)
     }
-    
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//
-//        if segue.identifier == "SecondView" {
-//            
-//            let secondViewController:DetectOneBookViewController = segue.destinationViewController as DetectOneBookViewController
-//
-//            // 変数:遷移先ViewController型 = segue.destinationViewController as 遷移先ViewController型
-//            // segue.destinationViewController は遷移先のViewController
-//
-//            secondViewController.sendText= self.textField.text
-//        }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -15,6 +15,9 @@
 		1E2BF66920DCE38E00218AD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E2BF66720DCE38E00218AD0 /* LaunchScreen.storyboard */; };
 		1E2BF67420DCE38E00218AD0 /* RereadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2BF67320DCE38E00218AD0 /* RereadTests.swift */; };
 		1E2BF67F20DCE38E00218AD0 /* RereadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2BF67E20DCE38E00218AD0 /* RereadUITests.swift */; };
+		1E36BD0F20F8D54D007CBC8E /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E36BD0E20F8D54D007CBC8E /* RankingTableViewController.swift */; };
+		1E36BD1120FF6676007CBC8E /* UseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E36BD1020FF6676007CBC8E /* UseApi.swift */; };
+		1E36BD1320FF66FB007CBC8E /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E36BD1220FF66FB007CBC8E /* Example.swift */; };
 		1E3A235B20E2606600FE2332 /* icon_000390_256.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1E3A235920E2606500FE2332 /* icon_000390_256.jpg */; };
 		1E3A235C20E2606600FE2332 /* icon_000010_256.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1E3A235A20E2606600FE2332 /* icon_000010_256.jpg */; };
 		1E3A235E20E3AB5100FE2332 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3A235D20E3AB5100FE2332 /* SearchViewController.swift */; };
@@ -22,6 +25,14 @@
 		1E3AD18A20EB2B6C00EB23A7 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E3AD18920EB2B6C00EB23A7 /* plus.png */; };
 		1E3AD18E20EC9F5100EB23A7 /* WriteImpressionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AD18D20EC9F5100EB23A7 /* WriteImpressionViewController.swift */; };
 		1E3AD19220ECA4AF00EB23A7 /* Impressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3AD19120ECA4AF00EB23A7 /* Impressions.swift */; };
+		1E3B39FC20F4327A00911C76 /* setting.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1E3B39FB20F4327900911C76 /* setting.jpeg */; };
+		1E3B3A0020F4458800911C76 /* WebAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3B39FF20F4458800911C76 /* WebAPI.swift */; };
+		1E406E502106B27900B08EFB /* ResultSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E406E4F2106B27900B08EFB /* ResultSearchTableViewController.swift */; };
+		1E406E52210701EB00B08EFB /* doApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E406E51210701EB00B08EFB /* doApi.swift */; };
+		1EBEB46620F593D400394756 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEB46420F592B800394756 /* GitHubAPI.swift */; };
+		1EBEB46820F59BB500394756 /* GitHubAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEB46720F59BB500394756 /* GitHubAPITests.swift */; };
+		1EBEB46A20F6C64100394756 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBEB46920F6C64100394756 /* extension.swift */; };
+		1EBEB46C20F6C87000394756 /* gahag-0076751521.png in Resources */ = {isa = PBXBuildFile; fileRef = 1EBEB46B20F6C87000394756 /* gahag-0076751521.png */; };
 		49F3FB233E02FC6C9DF60852 /* Pods_RereadTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FD8CCD484061717C6FBC39 /* Pods_RereadTests.framework */; };
 		50C5F3D6454E00A715E19F04 /* Pods_Reread.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C880185FF6541F334FDADA2 /* Pods_Reread.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +69,9 @@
 		1E2BF67A20DCE38E00218AD0 /* RereadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RereadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E2BF67E20DCE38E00218AD0 /* RereadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RereadUITests.swift; sourceTree = "<group>"; };
 		1E2BF68020DCE38E00218AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E36BD0E20F8D54D007CBC8E /* RankingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
+		1E36BD1020FF6676007CBC8E /* UseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseApi.swift; sourceTree = "<group>"; };
+		1E36BD1220FF66FB007CBC8E /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
 		1E3A235920E2606500FE2332 /* icon_000390_256.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_000390_256.jpg; sourceTree = "<group>"; };
 		1E3A235A20E2606600FE2332 /* icon_000010_256.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon_000010_256.jpg; sourceTree = "<group>"; };
 		1E3A235D20E3AB5100FE2332 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +79,14 @@
 		1E3AD18920EB2B6C00EB23A7 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		1E3AD18D20EC9F5100EB23A7 /* WriteImpressionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteImpressionViewController.swift; sourceTree = "<group>"; };
 		1E3AD19120ECA4AF00EB23A7 /* Impressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Impressions.swift; sourceTree = "<group>"; };
+		1E3B39FB20F4327900911C76 /* setting.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = setting.jpeg; sourceTree = "<group>"; };
+		1E3B39FF20F4458800911C76 /* WebAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAPI.swift; sourceTree = "<group>"; };
+		1E406E4F2106B27900B08EFB /* ResultSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchTableViewController.swift; sourceTree = "<group>"; };
+		1E406E51210701EB00B08EFB /* doApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = doApi.swift; sourceTree = "<group>"; };
+		1EBEB46420F592B800394756 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
+		1EBEB46720F59BB500394756 /* GitHubAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPITests.swift; sourceTree = "<group>"; };
+		1EBEB46920F6C64100394756 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		1EBEB46B20F6C87000394756 /* gahag-0076751521.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gahag-0076751521.png"; sourceTree = "<group>"; };
 		3F505E50ECC4AE899D7A44BA /* Pods_RereadUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RereadUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		548F30E8583171B75FB6F8AD /* Pods-Reread.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reread.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reread/Pods-Reread.debug.xcconfig"; sourceTree = "<group>"; };
 		6EB8BBFEF542028C73F07ED5 /* Pods-Reread.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reread.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reread/Pods-Reread.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +158,9 @@
 				1E2BF66520DCE38E00218AD0 /* Assets.xcassets */,
 				1E2BF66720DCE38E00218AD0 /* LaunchScreen.storyboard */,
 				1E2BF66A20DCE38E00218AD0 /* Info.plist */,
+				1EBEB46920F6C64100394756 /* extension.swift */,
+				1E36BD1220FF66FB007CBC8E /* Example.swift */,
+				1E406E51210701EB00B08EFB /* doApi.swift */,
 			);
 			path = Reread;
 			sourceTree = "<group>";
@@ -143,8 +168,11 @@
 		1E2BF67220DCE38E00218AD0 /* RereadTests */ = {
 			isa = PBXGroup;
 			children = (
+				1EBEB46420F592B800394756 /* GitHubAPI.swift */,
 				1E2BF67320DCE38E00218AD0 /* RereadTests.swift */,
 				1E2BF67520DCE38E00218AD0 /* Info.plist */,
+				1E3B39FF20F4458800911C76 /* WebAPI.swift */,
+				1EBEB46720F59BB500394756 /* GitHubAPITests.swift */,
 			);
 			path = RereadTests;
 			sourceTree = "<group>";
@@ -161,6 +189,8 @@
 		1E3AD18820EB29CC00EB23A7 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				1EBEB46B20F6C87000394756 /* gahag-0076751521.png */,
+				1E3B39FB20F4327900911C76 /* setting.jpeg */,
 				1E3AD18920EB2B6C00EB23A7 /* plus.png */,
 				1E3A235A20E2606600FE2332 /* icon_000010_256.jpg */,
 				1E3A235920E2606500FE2332 /* icon_000390_256.jpg */,
@@ -171,10 +201,13 @@
 		1E3AD18F20EC9F5700EB23A7 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				1E36BD1020FF6676007CBC8E /* UseApi.swift */,
 				1E132E9220E0FD9F004AD138 /* TopTableViewController.swift */,
 				1E3A235D20E3AB5100FE2332 /* SearchViewController.swift */,
 				1E3A235F20E3B9EA00FE2332 /* DetectOneBookViewController.swift */,
 				1E3AD18D20EC9F5100EB23A7 /* WriteImpressionViewController.swift */,
+				1E36BD0E20F8D54D007CBC8E /* RankingTableViewController.swift */,
+				1E406E4F2106B27900B08EFB /* ResultSearchTableViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -327,7 +360,9 @@
 				1E2BF66620DCE38E00218AD0 /* Assets.xcassets in Resources */,
 				1E3A235B20E2606600FE2332 /* icon_000390_256.jpg in Resources */,
 				1E2BF66420DCE38E00218AD0 /* Main.storyboard in Resources */,
+				1E3B39FC20F4327A00911C76 /* setting.jpeg in Resources */,
 				1E3A235C20E2606600FE2332 /* icon_000010_256.jpg in Resources */,
+				1EBEB46C20F6C87000394756 /* gahag-0076751521.png in Resources */,
 				1E3AD18A20EB2B6C00EB23A7 /* plus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +505,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E36BD0F20F8D54D007CBC8E /* RankingTableViewController.swift in Sources */,
 				1E3A235E20E3AB5100FE2332 /* SearchViewController.swift in Sources */,
+				1E36BD1120FF6676007CBC8E /* UseApi.swift in Sources */,
+				1E406E52210701EB00B08EFB /* doApi.swift in Sources */,
+				1E406E502106B27900B08EFB /* ResultSearchTableViewController.swift in Sources */,
+				1EBEB46A20F6C64100394756 /* extension.swift in Sources */,
+				1E36BD1320FF66FB007CBC8E /* Example.swift in Sources */,
 				1E2BF65F20DCE38E00218AD0 /* AppDelegate.swift in Sources */,
 				1E3AD19220ECA4AF00EB23A7 /* Impressions.swift in Sources */,
 				1E3AD18E20EC9F5100EB23A7 /* WriteImpressionViewController.swift in Sources */,
@@ -484,6 +525,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E2BF67420DCE38E00218AD0 /* RereadTests.swift in Sources */,
+				1EBEB46620F593D400394756 /* GitHubAPI.swift in Sources */,
+				1E3B3A0020F4458800911C76 /* WebAPI.swift in Sources */,
+				1EBEB46820F59BB500394756 /* GitHubAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
