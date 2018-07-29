@@ -6,7 +6,6 @@ import RealmSwift
 class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
     let scrollView = UIScrollView()
-    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,25 +42,22 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         let days = calendar.component(.day, from: day)
         return String(year) + "年" + String(month) + "月 " + String(days) + "日"
     }
-    func showScrollSubView(impres: Impressions){
+    func showScrollSubView(memo: Memos,index: Int){
         let main = UIScreen.main.bounds
         let rect1 =  CGRect(x: 0, y: 100, width: 200 , height: 50 )
         let label = UILabel(frame: rect1)
-        label.text = impres.memo
+        label.text = memo.memo
         let rect2 =  CGRect(x: 0, y: 0, width: 200 , height: 50 )
         let label2 = UILabel(frame: rect2)
-        label2.text = make_date(day: impres.date)
+        label2.text = make_date(day: memo.date)
         let color = [UIColor.white,UIColor.green,UIColor.red,UIColor.green,UIColor.white]
-        scrollView.contentSize = CGSize(width: main.width * CGFloat(count), height: (main.height)/2)
-        let rect = CGRect(x: 5 + main.width * CGFloat(count), y: 50, width: main.width - 10 , height: main.height/2 - 100 )
+        scrollView.contentSize = CGSize(width: main.width * CGFloat(index+1), height: (main.height)/2)
+        let rect = CGRect(x: 5 + main.width * CGFloat(index), y: 50, width: main.width - 10 , height: main.height/2 - 100 )
         let myView = UIView(frame: rect)
-        if count < 4 {
-            myView.backgroundColor = color[count]
-            myView.addSubview(label)
-            myView.addSubview(label2)
-            scrollView.addSubview(myView)
-            count += 1
-        }
+        myView.backgroundColor = color[index]
+        myView.addSubview(label)
+        myView.addSubview(label2)
+        scrollView.addSubview(myView)
     }
     
     @objc func addScrollSubView(){
@@ -71,30 +67,27 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let realm = try! Realm() //Realmのインスタンスを取得
-        let impres = realm.objects(Impressions.self)
-        //let impres = realm.objects(Impressions.self).filter("title ==  \(appDelegate.message)")
-        for (_ , element) in impres.enumerated() {
-            showScrollSubView(impres: element)
+        //let impres = realm.objects(Impressions.self)
+        let impres = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")
+        let memos = impres[0].memos
+        let sorted_memos = memos.sorted(byKeyPath: "date")
+        if sorted_memos.isEmpty {
+        }else{
+            for (index , element) in memos.enumerated() {
+                showScrollSubView(memo: element,index: index)
+            }
         }
         let message = appDelegate.message
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SearchViewController.close))
         self.title = message
-        //var impres = realm.objects(Impressions.self)
-        //impres = impres.filter("countryCode = '\(message)'")
-        //print(impres.last!.memo)
-        
-        
     }
     
     func addButton(_ main: CGRect) -> UIButton {
         let image3:UIImage = UIImage(named: "plus.png")!
         let button = UIButton()
         button.frame = CGRect(x:main.width / 2 - 50 , y: main.height - 150 ,width:100, height:100)
-        //button.setTitle("Tap me!", for:UIControlState.normal)
         button.setImage(image3, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-//        button.backgroundColor = UIColor.init(
-//            red:0.9, green: 0.9, blue: 0.9, alpha: 1)
         button.addTarget(self,action: #selector(self.addScrollSubView),for: .touchUpInside)
         return button
     }

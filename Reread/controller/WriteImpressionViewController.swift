@@ -1,11 +1,3 @@
-//
-//  WriteImpressionViewController.swift
-//  Reread
-//
-//  Created by 近藤大翔 on 2018/07/04.
-//  Copyright © 2018年 近藤大翔. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 
@@ -20,12 +12,13 @@ class WriteImpressionViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func sendImpression(_ sender: UIButton) {
         let realm = try! Realm()
-        let impression = Impressions()
-        impression.memo = memo.text
-        impression.title = appDelegate.message
-        impression.date = Date()
+        let add_memo = Memos()
+        let impression = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")[0]
+        //impression.memos = add_memo
+        add_memo.memo = memo.text
+        add_memo.date = Date()
         try! realm.write() {
-            realm.add(impression)
+            impression.memos.append(add_memo)
         }
         self.dismiss(animated: true, completion: nil)
     }

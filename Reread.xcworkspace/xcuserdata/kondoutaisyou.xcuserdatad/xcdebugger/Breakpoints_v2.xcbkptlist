@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/DetectOneBookViewController.swift"
-            timestampString = "554433295.2315381"
+            timestampString = "554533250.972774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "showScrollSubView(impres:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "showScrollSubView(memo:index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/DetectOneBookViewController.swift"
-            timestampString = "554433295.232296"
+            timestampString = "554533250.974066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "showScrollSubView(impres:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "showScrollSubView(memo:index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/DetectOneBookViewController.swift"
-            timestampString = "554433295.232734"
+            timestampString = "554533250.974791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "showScrollSubView(impres:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "showScrollSubView(memo:index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/DetectOneBookViewController.swift"
-            timestampString = "554433295.23308"
+            timestampString = "554533250.975494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "showScrollSubView(impres:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "showScrollSubView(memo:index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/SearchViewController.swift"
-            timestampString = "554431887.9232301"
+            timestampString = "554533250.97607"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/SearchViewController.swift"
-            timestampString = "554431887.923714"
+            timestampString = "554533250.976621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/SearchViewController.swift"
-            timestampString = "554431887.923817"
+            timestampString = "554533250.976776"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/ResultSearchTableViewController.swift"
-            timestampString = "554433295.233452"
+            timestampString = "554533250.976889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/ResultSearchTableViewController.swift"
-            timestampString = "554433295.233883"
+            timestampString = "554533250.977405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -160,16 +160,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reread/controller/TopTableViewController.swift"
-            timestampString = "554433295.234013"
+            timestampString = "554533250.977537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reread/controller/DetectOneBookViewController.swift"
+            timestampString = "554533250.9779871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reread/controller/DetectOneBookViewController.swift"
+            timestampString = "554533250.978642"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "showScrollSubView(memo:index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

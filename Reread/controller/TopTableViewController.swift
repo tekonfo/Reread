@@ -45,6 +45,7 @@ class TopTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let realm = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         let arrays = realm.objects(Impressions.self)
         
         if(arrays.count == 0){
