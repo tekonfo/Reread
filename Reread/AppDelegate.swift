@@ -1,20 +1,9 @@
-//
-//  AppDelegate.swift
-//  Reread
-//
-//  Created by 近藤大翔 on 2018/06/22.
-//  Copyright © 2018年 近藤大翔. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    
     var window: UIWindow?
-
     var message:String = ""  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let config = Realm.Configuration(

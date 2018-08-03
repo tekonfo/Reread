@@ -26,6 +26,7 @@ class ResultSearchTableViewController: UITableViewController,XMLParserDelegate {
         //let nabigation = UINavigationController(rootViewController: self)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SearchViewController.close))
         let queryItems = [ URLQueryItem(name:"operation",value: "searchRetrieve"),URLQueryItem(name:"query",value: query),URLQueryItem(name:"maximumRecords",value: "5"),URLQueryItem(name:"recordPacking",value: "xml")]
+        //,URLQueryItem(name:"recordSchema",value: "dcndl"),URLQueryItem(name:"onlyBib",value: "true")
         var compnents = URLComponents(string: "http://iss.ndl.go.jp/api/sru")
         compnents?.queryItems = queryItems
         let url = compnents?.url

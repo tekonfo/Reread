@@ -3,9 +3,16 @@
 import UIKit
 import RealmSwift
 
+class LabelButton: UIButton {
+    //検索時の添え字を入れておきたいので、それを入れておく。
+    var index:Int?
+}
+
 class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
     let scrollView = UIScrollView()
+    let color = [UIColor.white,UIColor.green,UIColor.red,UIColor.green,UIColor.white]
+    var arr_memos:[Memos] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,28 +57,94 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         let rect2 =  CGRect(x: 0, y: 0, width: 200 , height: 50 )
         let label2 = UILabel(frame: rect2)
         label2.text = make_date(day: memo.date)
-        let color = [UIColor.white,UIColor.green,UIColor.red,UIColor.green,UIColor.white]
         scrollView.contentSize = CGSize(width: main.width * CGFloat(index+1), height: (main.height)/2)
         let rect = CGRect(x: 5 + main.width * CGFloat(index), y: 50, width: main.width - 10 , height: main.height/2 - 100 )
         let myView = UIView(frame: rect)
+        let button = make_threePoint_button(index: index)
         myView.backgroundColor = color[index]
         myView.addSubview(label)
         myView.addSubview(label2)
+        myView.addSubview(button)
         scrollView.addSubview(myView)
     }
     
+    func make_threePoint_button(index: Int)-> UIButton{
+        let main = UIScreen.main.bounds
+        let button = LabelButton()
+        let image = UIImage(named: "3point.png")
+        button.index = index
+        button.setImage(image, for: .normal)
+        button.backgroundColor = color[index]
+        button.addTarget(self, action: #selector(DetectOneBookViewController.onClickMyButton(_:)), for: .touchUpInside)
+        let rect = CGRect(x: main.width - 50, y: 10, width: 30 , height: 30 )
+        button.frame = rect
+        return button
+    }
+    
+    @objc func onClickMyButton(_ sender:LabelButton){
+        // ① UIAlertControllerクラスのインスタンスを生成
+        // タイトル, メッセージ, Alertのスタイルを指定する
+        // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+        let alert: UIAlertController = UIAlertController(title: "アラート表示", message: "保存してもいいですか？", preferredStyle:  UIAlertControllerStyle.actionSheet)
+        
+        // ② Actionの設定
+        // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+        // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+        // 編集
+        let editAction: UIAlertAction = UIAlertAction(title: "編集", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            
+            
+        })
+        //削除
+        let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            let data = self.arr_memos[sender.index!]
+            do {
+                let realm = try Realm()
+                try! realm.write {
+                    realm.delete(data)
+                }
+            } catch {
+            }
+            self.viewDidLoad()
+        })
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+            
+        })
+        
+        // ③ UIAlertControllerにActionを追加
+        alert.addAction(deleteAction)
+        alert.addAction(editAction)
+        alert.addAction(cancelAction)
+        
+        // ④ Alertを表示
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func edit_memo(index: Int){
+        
+    }
+    
+    func delete_memo(index: Int){
+        
+    }
     @objc func addScrollSubView(){
-        self.performSegue(withIdentifier: "ToWriteImpressionViewController", sender: self)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let realm = try! Realm() //Realmのインスタンスを取得
-        //let impres = realm.objects(Impressions.self)
+
         let impres = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")
         let memos = impres[0].memos
-        let sorted_memos = memos.sorted(byKeyPath: "date")
-        if sorted_memos.isEmpty {
+        let memos2 = memos.sorted(byKeyPath: "date")
+        self.arr_memos = Array[memos2]
+        if self.arr_memos.isEmpty {
         }else{
             for (index , element) in memos.enumerated() {
                 showScrollSubView(memo: element,index: index)
@@ -88,7 +161,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         button.frame = CGRect(x:main.width / 2 - 50 , y: main.height - 150 ,width:100, height:100)
         button.setImage(image3, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-        button.addTarget(self,action: #selector(self.addScrollSubView),for: .touchUpInside)
+        button.addTarget(self,action: #selector(self.onClickMyButton),for: .touchUpInside)
         return button
     }
 
