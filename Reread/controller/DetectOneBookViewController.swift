@@ -7,6 +7,7 @@ class LabelButton: UIButton {
     //検索時の添え字を入れておきたいので、それを入れておく。
     var index:Int?
     var id = ""
+    var memo = ""
 }
 
 class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
@@ -16,9 +17,6 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     let color = [UIColor.white,UIColor.green,UIColor.red,UIColor.green,UIColor.white]
     var arr_memos:[Memos] = []
     
-    
-    
-    
     override func viewDidLoad() {
         
         //viewdidloadはインスタンスを再作成しているらしい
@@ -27,7 +25,6 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         self.view.addSubview(addScrollView(main))
         self.view.addSubview(addButton(main))
         let realm = try! Realm() //Realmのインスタンスを取得
-        
         let impres = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")
         let memos = impres[0].memos
         let memos2 = memos.sorted(byKeyPath: "date")
@@ -69,6 +66,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         scrollView.delegate = self
         return scrollView
     }
+    
     func make_date(day: Date) -> String {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: day)
@@ -89,7 +87,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         scrollView.contentSize = CGSize(width: main.width * CGFloat(index+1), height: (main.height)/2)
         let rect = CGRect(x: 5 + main.width * CGFloat(index), y: 50, width: main.width - 10 , height: main.height/2 - 100 )
         let myView = UIView(frame: rect)
-        let button = make_threePoint_button(index: index,id :memo.id)
+        let button = make_threePoint_button(index: index,id :memo.id, memo: memo.memo)
         myView.backgroundColor = color[index]
         myView.addSubview(label)
         myView.addSubview(label2)
@@ -97,11 +95,12 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         scrollView.addSubview(myView)
     }
     
-    func make_threePoint_button(index: Int,id: String)-> UIButton{
+    func make_threePoint_button(index: Int,id: String,memo: String)-> UIButton{
         let main = UIScreen.main.bounds
         let button = LabelButton()
         let image = UIImage(named: "3point.png")
         button.id = id
+        button.memo = memo
         button.setImage(image, for: .normal)
         button.backgroundColor = color[index]
         button.addTarget(self, action: #selector(DetectOneBookViewController.onClickMyButton(_:)), for: .touchUpInside)
@@ -122,6 +121,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         // 編集
         let editAction: UIAlertAction = UIAlertAction(title: "編集", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: "ToWriteImpressionViewController", sender:sender)
         })
         //削除
         let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.default, handler:{
@@ -154,18 +154,13 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     }
     
     func edit_memo(index: Int){
-        
-        
-        
     }
     
     func delete_memo(index: Int){
-
     }
     
     
     @objc func addScrollSubView(){
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -183,7 +178,6 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
                 showScrollSubView(memo: element,index: index)
             }
         }
-
     }
     
     func addButton(_ main: CGRect) -> UIButton {
@@ -201,10 +195,20 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     }
     
     
-
     @objc func close()  {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToWriteImpressionViewController" {
+            if sender is LabelButton {
+                let button = sender as! LabelButton
+                let nc = segue.destination as! UINavigationController
+                let writeimpressionviewcontroller = nc.topViewController as! WriteImpressionViewController
+                writeimpressionviewcontroller.e_memo = button.memo
+                writeimpressionviewcontroller.id = button.id
+            }
+        }
+    }
 
 }

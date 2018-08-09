@@ -4,6 +4,8 @@ import RealmSwift
 class WriteImpressionViewController: UIViewController, UITextViewDelegate {
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
     var name:String = ""
+    var e_memo:String = ""
+    var id:String = ""
     
     @IBOutlet weak var memo: UITextView!
     @IBAction func cancel(_ sender: UIButton) {
@@ -18,7 +20,12 @@ class WriteImpressionViewController: UIViewController, UITextViewDelegate {
         add_memo.memo = memo.text
         add_memo.date = Date()
         try! realm.write() {
-            impression.memos.append(add_memo)
+            if id.isEmpty {
+                impression.memos.append(add_memo)
+            }else{
+                let edit_memo = realm.objects(Memos.self).filter("id = '\(id)'")
+                edit_memo[0].memo = memo.text
+            }
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -26,6 +33,7 @@ class WriteImpressionViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SearchViewController.close))
+        memo.text = e_memo
     }
 
     override func didReceiveMemoryWarning() {
