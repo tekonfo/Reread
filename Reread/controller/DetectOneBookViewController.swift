@@ -163,9 +163,15 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         button.frame = CGRect(x:main.width / 2 - 50 , y: main.height - 150 ,width:100, height:100)
         button.setImage(image3, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
-        button.addTarget(self,action: #selector(self.onClickMyButton),for: .touchUpInside)
+        button.addTarget(self,action: #selector(self.onClickAddButton),for: .touchUpInside)
         return button
     }
+    
+    @objc func onClickAddButton(){
+        performSegue(withIdentifier: "ToWriteImpressionViewController", sender: self)
+    }
+    
+    
 
     @objc func close()  {
         self.dismiss(animated: true, completion: nil)

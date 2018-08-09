@@ -3,6 +3,7 @@ import RealmSwift
 
 class WriteImpressionViewController: UIViewController, UITextViewDelegate {
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
+    var name:String = ""
     
     @IBOutlet weak var memo: UITextView!
     @IBAction func cancel(_ sender: UIButton) {
@@ -14,7 +15,6 @@ class WriteImpressionViewController: UIViewController, UITextViewDelegate {
         let realm = try! Realm()
         let add_memo = Memos()
         let impression = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")[0]
-        //impression.memos = add_memo
         add_memo.memo = memo.text
         add_memo.date = Date()
         try! realm.write() {
