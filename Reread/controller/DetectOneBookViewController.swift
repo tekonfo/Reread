@@ -20,6 +20,8 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     
     
     override func viewDidLoad() {
+        
+        //viewdidloadはインスタンスを再作成しているらしい
         super.viewDidLoad()
         let main = UIScreen.main.bounds
         self.view.addSubview(addScrollView(main))
@@ -120,8 +122,6 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         // 編集
         let editAction: UIAlertAction = UIAlertAction(title: "編集", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
-            
-            
         })
         //削除
         let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.default, handler:{
@@ -136,6 +136,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
             self.arr_memos.removeAll()
             self.viewDidLoad()
         })
+        
         // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
             (action: UIAlertAction!) -> Void in
@@ -169,23 +170,20 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        let realm = try! Realm() //Realmのインスタンスを取得
-//
-//        let impres = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")
-//        let memos = impres[0].memos
-//        let memos2 = memos.sorted(byKeyPath: "date")
-//        for memo in memos2{
-//            self.arr_memos.append(memo)
-//        }
-//        if self.arr_memos.isEmpty {
-//        }else{
-//            for (index , element) in memos.enumerated() {
-//                showScrollSubView(memo: element,index: index)
-//            }
-//        }
-//        let message = appDelegate.message
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SearchViewController.close))
-//        self.title = message
+        let realm = try! Realm() //Realmのインスタンスを取得
+        let impres = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")
+        let memos = impres[0].memos
+        let memos2 = memos.sorted(byKeyPath: "date")
+        for memo in memos2{
+            self.arr_memos.append(memo)
+        }
+        if self.arr_memos.isEmpty {
+        }else{
+            for (index , element) in memos.enumerated() {
+                showScrollSubView(memo: element,index: index)
+            }
+        }
+
     }
     
     func addButton(_ main: CGRect) -> UIButton {
