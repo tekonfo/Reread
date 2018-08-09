@@ -6,13 +6,18 @@ import RealmSwift
 class LabelButton: UIButton {
     //検索時の添え字を入れておきたいので、それを入れておく。
     var index:Int?
+    var id = ""
 }
 
 class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
+   
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
     let scrollView = UIScrollView()
     let color = [UIColor.white,UIColor.green,UIColor.red,UIColor.green,UIColor.white]
     var arr_memos:[Memos] = []
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +65,7 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         scrollView.contentSize = CGSize(width: main.width * CGFloat(index+1), height: (main.height)/2)
         let rect = CGRect(x: 5 + main.width * CGFloat(index), y: 50, width: main.width - 10 , height: main.height/2 - 100 )
         let myView = UIView(frame: rect)
-        let button = make_threePoint_button(index: index)
+        let button = make_threePoint_button(index: index,id :memo.id)
         myView.backgroundColor = color[index]
         myView.addSubview(label)
         myView.addSubview(label2)
@@ -68,11 +73,11 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         scrollView.addSubview(myView)
     }
     
-    func make_threePoint_button(index: Int)-> UIButton{
+    func make_threePoint_button(index: Int,id: String)-> UIButton{
         let main = UIScreen.main.bounds
         let button = LabelButton()
         let image = UIImage(named: "3point.png")
-        button.index = index
+        button.id = id
         button.setImage(image, for: .normal)
         button.backgroundColor = color[index]
         button.addTarget(self, action: #selector(DetectOneBookViewController.onClickMyButton(_:)), for: .touchUpInside)
@@ -99,15 +104,15 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         //削除
         let deleteAction: UIAlertAction = UIAlertAction(title: "削除", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
-            let data = self.arr_memos[sender.index!]
+            let realm = try! Realm()
+            let memo = realm.objects(Memos.self).filter("id = '\(sender.id)'")
             do {
-                let realm = try Realm()
                 try! realm.write {
-                    realm.delete(data)
+                    realm.delete(memo)
                 }
-            } catch {
             }
-            self.viewDidLoad()
+            self.arr_memos.removeAll()
+            self.loadView()
         })
         // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
@@ -127,11 +132,15 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
     
     func edit_memo(index: Int){
         
+        
+        
     }
     
     func delete_memo(index: Int){
-        
+
     }
+    
+    
     @objc func addScrollSubView(){
         
     }
