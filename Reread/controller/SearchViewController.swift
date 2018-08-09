@@ -63,7 +63,11 @@ private var mySearchBar: UISearchBar!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToSearchResult" {
-            let resultsearchtableViewController = segue.destination as!   ResultSearchTableViewController
+            let nc = segue.destination as! UINavigationController
+//
+//            let resultsearchtableViewController = segue.destination as!   ResultSearchTableViewController
+//
+            let resultsearchtableViewController = nc.topViewController as! ResultSearchTableViewController
             resultsearchtableViewController.query = sender as! String
         }
     }

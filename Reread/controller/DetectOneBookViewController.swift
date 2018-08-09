@@ -143,7 +143,9 @@ class DetectOneBookViewController: UIViewController , UIScrollViewDelegate{
         let impres = realm.objects(Impressions.self).filter("title =  '\(appDelegate.message)'")
         let memos = impres[0].memos
         let memos2 = memos.sorted(byKeyPath: "date")
-        self.arr_memos = Array[memos2]
+        for memo in memos2{
+            self.arr_memos.append(memo)
+        }
         if self.arr_memos.isEmpty {
         }else{
             for (index , element) in memos.enumerated() {
